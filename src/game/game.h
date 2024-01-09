@@ -6,15 +6,15 @@
 #define SFML_TANK_BATTLEROYALE_GAME_H
 
 #include "game objects/Block.h"
+#include "game objects/Tank.h"
 #include "Timer.h"
 
-#include "../window/window.h"
+#include "window.h"
 
 namespace game {
   class Game {
   private:
     window * win;
-    std::vector<GameObject *> gameObjects;
     game::Timer timer;
     sf::Sprite bg;
     sf::Text fps;
@@ -24,6 +24,7 @@ namespace game {
 
   public:
     Game() = delete;
+    std::vector<GameObject *> gameObjects;
 
     virtual ~Game();
 

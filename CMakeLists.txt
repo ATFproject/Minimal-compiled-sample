@@ -23,5 +23,8 @@ add_executable(sfml_tank_battleroyale ${SOURCES})
 target_link_libraries(sfml_tank_battleroyale PRIVATE sfml-graphics)
 target_compile_features(sfml_tank_battleroyale PRIVATE cxx_std_17)
 
+# Add header dirs for easier usage
+target_include_directories(sfml_tank_battleroyale PRIVATE "src/game" "src/window")
+
 # Compile and link the app
 install(TARGETS sfml_tank_battleroyale)

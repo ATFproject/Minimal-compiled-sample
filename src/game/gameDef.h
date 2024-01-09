@@ -18,9 +18,13 @@ namespace game {
 
   class Game;
 
+  enum class GameObjectType;
+
   class GameObject;
   class Keyboard;
   class Block;
+
+  class Tank;
 }
 
 #endif //SFML_TANK_BATTLEROYALE_GAMEDEF_H

@@ -17,8 +17,9 @@ void game::Game::tick() {
   if (isKeyPressed(sf::Keyboard::Scancode::Q))
     win->win->close();
 
+
   for (auto & gameObject: gameObjects) {
-    gameObject->tick(win->win);
+    gameObject->tick(win, *this);
   }
 }
 
@@ -27,7 +28,7 @@ void game::Game::draw() {
   win->win->draw(fps);
 
   for (auto & gameObject: gameObjects) {
-    gameObject->draw(win->win);
+    gameObject->draw(win, *this);
   }
 }
 

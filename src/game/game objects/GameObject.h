@@ -5,19 +5,28 @@
 #ifndef SFML_TANK_BATTLEROYALE_GAMEOBJECT_H
 #define SFML_TANK_BATTLEROYALE_GAMEOBJECT_H
 
-#include "../gameDef.h"
+#include "gameDef.h"
+#include "window.h"
 
 namespace game {
+  enum class GameObjectType {
+    BLOCK,
+    TANK,
+    NONE,
+  };
+
   class GameObject {
   protected:
-    GameObject() {}
+    explicit GameObject( GameObjectType newType ) : type(newType) {}
 
   public:
+    GameObjectType type;
     sf::Sprite sprite;
 
-    virtual void tick( sf::RenderWindow * window ) = 0;
+    GameObject() = delete;
+    virtual void tick( window * window, Game & game ) = 0;
 
-    virtual void draw( sf::RenderWindow * window ) = 0;
+    virtual void draw( window * window, Game & game ) = 0;
 
     virtual ~GameObject() = default;
   };
