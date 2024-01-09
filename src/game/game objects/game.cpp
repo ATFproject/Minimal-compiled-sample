@@ -3,6 +3,7 @@
 //
 
 #include "game_mod.h"
+#include "game.h"
 
 
 game::ResourceHandler game::resourceHandler;
@@ -27,8 +28,16 @@ void game::Game::tick() {
 }
 
 void game::Game::draw() {
+  float rotation = mainView.getRotation();
+  
+  mainView.setRotation(0);
+  win->win->setView(mainView);
+  win->win->clear(sf::Color::Black);
   win->win->draw(bg);
   win->win->draw(fps);
+  
+  mainView.setRotation(rotation);
+  win->win->setView(mainView);
 
   for (auto & gameObject: gameObjects) {
     gameObject->draw(win, *this);
@@ -60,6 +69,11 @@ game::Game::Game( window * newWindow ) : win(newWindow) {
 
 void game::Game::setBg( const std::string & BgFileName ) {
   bg.setTexture(*game::resourceHandler.LoadTexture(BgFileName));
+}
+
+void game::Game::resize( const sf::Vector2f & NewSize ) {
+  sf::FloatRect visibleArea(0.f, 0.f, NewSize.x, NewSize.y);
+  mainView = sf::View(visibleArea);
 }
 
 

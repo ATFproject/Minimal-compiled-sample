@@ -38,7 +38,7 @@ public:
     WinEventHandler eventHandler(win);
 
     while (win->win->isOpen()) {
-      eventHandler.handleNewEvents();
+      eventHandler.handleNewEvents(game);
       drawFrame();
       win->win->display();
     }

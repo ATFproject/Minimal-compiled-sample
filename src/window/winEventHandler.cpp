@@ -1,13 +1,17 @@
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "cppcoreguidelines-narrowing-conversions"
 //
 // Created by livefish on 1/9/24.
 //
 
 #include "winEventHandler.h"
 
+#include "game_mod.h"
+
 #include <iostream>
 #include <cstring>
 
-void WinEventHandler::handleNewEvents() const {
+void WinEventHandler::handleNewEvents(game::Game &game) const {
   sf::Event event{};
   sf::RenderWindow * rw = win->win;
 
@@ -33,6 +37,7 @@ void WinEventHandler::handleNewEvents() const {
         win->size.x = event.size.width;
         win->size.y = event.size.height;
         std::cout << "Resized: " << event.size.width << ", " << event.size.height << std::endl;
+        game.resize(sf::Vector2f(event.size.width, event.size.height));
         break;
 
       case sf::Event::KeyPressed:
@@ -48,3 +53,5 @@ void WinEventHandler::handleNewEvents() const {
     }
   }
 }
+
+#pragma clang diagnostic pop

@@ -15,27 +15,35 @@ void game::Tank::tick( window * window, game::Game & game ) {
       }
     }
   }
-
+  
   using
   enum sf::Keyboard::Scancode;
-
+  
   if (game.isKeyPressed(A))
     bodyDirRad -= 1 * game.timer.deltaTime.asSeconds();
   if (game.isKeyPressed(D))
     bodyDirRad += 1 * game.timer.deltaTime.asSeconds();
-
+  
   bodyDir = norm(sf::Vector2f(std::cos(bodyDirRad), std::sin(bodyDirRad)));
-
+  
   if (game.isKeyPressed(W))
     pos += bodyDir * 75.f * game.timer.deltaTime.asSeconds();
   if (game.isKeyPressed(S))
     pos -= bodyDir * 75.f * game.timer.deltaTime.asSeconds();
-
+  
   if (game.isKeyPressed(R))
     sprite.setScale(sprite.getScale() + sf::Vector2f(0.1, 0.1));
   if (game.isKeyPressed(F))
     sprite.setScale(sprite.getScale() - sf::Vector2f(0.1, 0.1));
-
+  
+  if (game.isKeyPressed(Right)) {
+    game.mainView.rotate(-20 * game.timer.deltaTime.asSeconds());
+  }
+  
+  if (game.isKeyPressed(Left)) {
+    game.mainView.rotate(20 * game.timer.deltaTime.asSeconds());
+  }
+  
   sf::Color color = sprite.getColor();
   if (game.isKeyPressed(Z)) {
     if (color.r == 255)
@@ -56,23 +64,23 @@ void game::Tank::tick( window * window, game::Game & game ) {
       color.b += 1;
   }
   sprite.setColor(color);
-
+  
   sprite.setPosition(pos);
   sprite.setRotation(bodyDirRad / M_PI * 180 + 90);
-  std::cout << bodyDirRad << std::endl;
 }
 
 game::Tank::Tank() : GameObject(GameObjectType::TANK) {
   sprite.setTexture(*resourceHandler.LoadTexture("tanks/tank raw.png"));
   sprite.setColor(sf::Color::Black);
-
+  
   pos = {300, 200};
-  bodyDir = {0, -1};
+  bodyDir = gunDir = {0, -1};
   bodyDirRad = 0;
-
+  gunDirRad = 0;
+  
   sprite.setOrigin(sprite.getGlobalBounds().width / 2, sprite.getGlobalBounds().height / 2);
   sprite.setPosition(pos);
-
+  
 }
 
 

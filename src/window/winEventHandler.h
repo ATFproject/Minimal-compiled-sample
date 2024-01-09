@@ -7,6 +7,8 @@
 
 #include "window.h"
 
+#include "game_def.h"
+
 class WinEventHandler {
 private:
   window * win;
@@ -16,7 +18,7 @@ public:
 
   explicit WinEventHandler( window * newWindow ) : win(newWindow) {}
 
-  void handleNewEvents() const;
+  void handleNewEvents(game::Game &game) const;
 };
 
 

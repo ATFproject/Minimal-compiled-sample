@@ -19,6 +19,7 @@ namespace game {
 
   public:
     game::Timer timer;
+    sf::View mainView;
 
     Game() = delete;
 
@@ -29,7 +30,7 @@ namespace game {
     explicit Game( window * NewWin );
 
     void setBg( const std::string & BgFileName );
-
+    void resize( const sf::Vector2f &NewSize);
     bool isKeyPressed( sf::Keyboard::Scancode key );
 
     Game & operator<<( GameObject * toAdd );
