@@ -1,37 +1,23 @@
-#include "SFML/Graphics.hpp"
+//
+// Created by livefish on 1/08/24.
+//
 
-void renderingThread(sf::RenderWindow* window)
-{
-  // activate the window's context
-  window->setActive(true);
+#include <thread>
+#include "window/WinRenderThread.h"
 
-  // the rendering loop
-  while (window->isOpen())
-  {
-    // draw...
-
-    // end the current frame
-    window->display();
-  }
-}
-
-int main()
-{
-  // create the window (remember: it's safer to create it in the main thread due to OS limitations)
+int main() {
   sf::RenderWindow window(sf::VideoMode(800, 600), "Livefish-Example tanks game!");
-
-  // deactivate its OpenGL context
+  window.setVerticalSyncEnabled(true);
   window.setActive(false);
 
-  // launch the rendering thread
-  sf::Thread thread(&renderingThread, &window);
-  thread.launch();
+  WinRenderThread renderThread(&window);
+  std::thread thread(&WinRenderThread::startRendering, &renderThread);
 
-
-  while (window.isOpen())
-  {
-
+  while (window.isOpen()) {
+    // TODO: Some background stuff here later
   }
+
+  thread.join();
 
   return 0;
 }
