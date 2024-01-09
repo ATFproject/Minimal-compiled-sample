@@ -26,7 +26,7 @@ private:
 public:
   WinRenderThread() = delete;
 
-  explicit WinRenderThread( window * newWindow ) : win(newWindow), game(newWindow->win) {
+  explicit WinRenderThread( window * newWindow ) : win(newWindow), game(newWindow) {
     game << new game::Block(sf::Vector2f(100, 50), "block.png")
          << new game::Block(sf::Vector2f(100, 150), "block 2.png");
 

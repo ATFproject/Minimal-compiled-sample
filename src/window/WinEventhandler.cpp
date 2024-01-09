@@ -5,6 +5,7 @@
 #include "WinEventHandler.h"
 
 #include <iostream>
+#include <cstring>
 
 void WinEventHandler::handleNewEvents() const {
   sf::Event event{};
@@ -19,6 +20,8 @@ void WinEventHandler::handleNewEvents() const {
       case sf::Event::LostFocus:
         win->isActive = false;
         std::cout << "Lost focus" << std::endl;
+        // Disable all keyboard input
+        memset(win->keys, 0, sizeof(bool) * 256);
         break;
 
       case sf::Event::GainedFocus:
@@ -30,6 +33,18 @@ void WinEventHandler::handleNewEvents() const {
         win->size.x = event.size.width;
         win->size.y = event.size.height;
         std::cout << "Resized: " << event.size.width << ", " << event.size.height << std::endl;
+        break;
+
+      case sf::Event::KeyPressed:
+        if (win->isActive) {
+          win->keys[event.key.scancode] = true;
+        }
+        break;
+
+      case sf::Event::KeyReleased:
+        if (win->isActive) {
+          win->keys[event.key.scancode] = false;
+        }
         break;
 
       default:

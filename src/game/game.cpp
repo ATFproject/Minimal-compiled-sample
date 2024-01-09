@@ -6,23 +6,28 @@
 
 game::ResourceHandler game::resourceHandler;
 
+bool game::Game::isKeyPressed( sf::Keyboard::Scancode key ) {
+  return win->keys[key];
+}
+
 void game::Game::tick() {
   timer.response();
   fps.setString("FPS: " + std::to_string(timer.fps) + "; TIME: " + std::to_string(timer.time.asSeconds()));
 
-
+  if (isKeyPressed(sf::Keyboard::Scancode::Q))
+    win->win->close();
 
   for (auto & gameObject: gameObjects) {
-    gameObject->tick(window);
+    gameObject->tick(win->win);
   }
 }
 
 void game::Game::draw() {
-  window->draw(bg);
-  window->draw(fps);
+  win->win->draw(bg);
+  win->win->draw(fps);
 
   for (auto & gameObject: gameObjects) {
-    gameObject->draw(window);
+    gameObject->draw(win->win);
   }
 }
 
@@ -37,7 +42,7 @@ game::Game & game::Game::operator<<( GameObject * toAdd ) {
   return *this;
 }
 
-game::Game::Game( sf::RenderWindow * newWindow ) : window(newWindow) {
+game::Game::Game( window * newWindow ) : win(newWindow) {
   // TODO: Manage font as a resource
   if (!fpsFont.loadFromFile("../resources/fonts/arialmt.ttf")) {
     std::cerr << "FAILED TO LOAD ARIAL FONT!" << std::endl;
@@ -48,4 +53,5 @@ game::Game::Game( sf::RenderWindow * newWindow ) : window(newWindow) {
   fps.setFillColor(sf::Color::Blue);
   fps.setStyle(sf::Text::Bold | sf::Text::Underlined);
 }
+
 
