@@ -5,8 +5,10 @@
 #ifndef SFML_TANK_BATTLEROYALE_BLOCK_H
 #define SFML_TANK_BATTLEROYALE_BLOCK_H
 
-#include "../game.h"
+#include "../gameDef.h"
+
 #include "GameObject.h"
+#include "../ResourceHandler.h"
 
 namespace game {
   class Block : public GameObject {
@@ -18,8 +20,6 @@ namespace game {
       sprite.setTexture(*resourceHandler.LoadTexture(TexName));
       sprite.setPosition(pos);
     }
-
-    ~Block() override = default;
 
     void draw( sf::RenderWindow * window ) override {
       window->draw(sprite);

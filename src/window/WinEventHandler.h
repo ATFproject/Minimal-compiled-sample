@@ -5,31 +5,18 @@
 #ifndef SFML_TANK_BATTLEROYALE_WINEVENTHANDLER_H
 #define SFML_TANK_BATTLEROYALE_WINEVENTHANDLER_H
 
-#include "SFML/Graphics.hpp"
+#include "window.h"
 
 class WinEventHandler {
 private:
-  sf::RenderWindow *window;
+  window * win;
 
 public:
   WinEventHandler() = delete;
 
-  explicit WinEventHandler( sf::RenderWindow *newWindow ) : window(newWindow) {}
+  explicit WinEventHandler( window * newWindow ) : win(newWindow) {}
 
-  void handleNewEvents() {
-    sf::Event event{};
-
-    while (window->pollEvent(event)) {
-      switch (event.type) {
-        case sf::Event::Closed:
-          window->close();
-          break;
-
-        default:
-          break;
-      }
-    }
-  }
+  void handleNewEvents() const;
 };
 
 

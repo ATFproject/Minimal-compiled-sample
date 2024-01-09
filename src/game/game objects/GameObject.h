@@ -5,22 +5,23 @@
 #ifndef SFML_TANK_BATTLEROYALE_GAMEOBJECT_H
 #define SFML_TANK_BATTLEROYALE_GAMEOBJECT_H
 
-#include "SFML/Graphics.hpp"
+#include "../gameDef.h"
 
-#include <iostream>
+namespace game {
+  class GameObject {
+  protected:
+    GameObject() {}
 
-class GameObject {
-protected:
-  GameObject() {}
+  public:
+    sf::Sprite sprite;
 
-public:
-  sf::Sprite sprite;
+    virtual void tick( sf::RenderWindow * window ) = 0;
 
-  virtual void tick( sf::RenderWindow *window ) = 0;
-  virtual void draw( sf::RenderWindow *window ) = 0;
+    virtual void draw( sf::RenderWindow * window ) = 0;
 
-  virtual ~GameObject() = default;
-};
+    virtual ~GameObject() = default;
+  };
+}
 
 
 #endif //SFML_TANK_BATTLEROYALE_GAMEOBJECT_H

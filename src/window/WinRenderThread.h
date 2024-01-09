@@ -9,68 +9,38 @@
 #include <vector>
 #include <cmath>
 
+#include "../game/game.h"
+
 #include "WinEventHandler.h"
-#include "../game/game objects/Block.h"
-#include "../game/Timer.h"
 
 class WinRenderThread {
 private:
-  sf::RenderWindow * window;
-  sf::Sprite bg;
-  sf::Text fps;
-  sf::Font fpsFont;
-
-  game::Timer timer;
+  window * win;
+  game::Game game;
 
   void drawFrame() {
-    window->draw(bg);
-    window->draw(fps);
-    for (auto & gameObject: gameObjects) {
-      gameObject->tick(window);
-    }
-    for (auto & gameObject: gameObjects) {
-      gameObject->draw(window);
-    }
+    game.tick();
+    game.draw();
   }
 
 public:
-  std::vector<GameObject *> gameObjects; // TODO: make class game and put game objects and timer there
-
   WinRenderThread() = delete;
 
-  ~WinRenderThread() {
-    for (auto & gameObject: gameObjects) {
-      delete gameObject;
-    }
-  }
+  explicit WinRenderThread( window * newWindow ) : win(newWindow), game(newWindow->win) {
+    game << new game::Block(sf::Vector2f(100, 50), "block.png")
+         << new game::Block(sf::Vector2f(100, 150), "block 2.png");
 
-  explicit WinRenderThread( sf::RenderWindow * window ) : window(window) {
-    gameObjects.push_back(new game::Block(sf::Vector2f(100, 50), "block.png"));
-    gameObjects.push_back(new game::Block(sf::Vector2f(100, 150), "block 2.png"));
-
-    bg.setTexture(*game::resourceHandler.LoadTexture("bg.png"));
-
-    if (!fpsFont.loadFromFile("../resources/fonts/arialmt.ttf")) {
-      std::cerr << "FAILED TO LOAD ARIAL FONT!" << std::endl;
-      exit(50);
-    }
-    fps.setFont(fpsFont);
-    fps.setCharacterSize(24);
-    fps.setFillColor(sf::Color::Blue);
-    fps.setStyle(sf::Text::Bold | sf::Text::Underlined);
+    game.setBg("bg.png");
   }
 
   void startRendering() {
-    window->setActive(true);
-    WinEventHandler eventHandler(window);
+    win->win->setActive(true);
+    WinEventHandler eventHandler(win);
 
-    while (window->isOpen()) {
+    while (win->win->isOpen()) {
       eventHandler.handleNewEvents();
-      timer.response();
-      fps.setString("FPS: " + std::to_string(timer.fps) + "; TIME: " + std::to_string(timer.time.asSeconds()));
-
       drawFrame();
-      window->display();
+      win->win->display();
     }
   }
 };
