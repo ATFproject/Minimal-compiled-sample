@@ -5,7 +5,7 @@
 #ifndef SFML_TANK_BATTLEROYALE_TIMER_H
 #define SFML_TANK_BATTLEROYALE_TIMER_H
 
-#include "gameDef.h"
+#include "game_def.h"
 
 namespace game {
   class Timer {

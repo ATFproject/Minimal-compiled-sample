@@ -3,7 +3,8 @@
 //
 
 #include <thread>
-#include "WinRenderThread.h"
+
+#include "winRenderThread.h"
 
 int main() {
   sf::RenderWindow win(sf::VideoMode(800, 600), "Livefish-Example tanks game!");

@@ -5,7 +5,7 @@
 #ifndef SFML_TANK_BATTLEROYALE_RESOURCEHANDLER_H
 #define SFML_TANK_BATTLEROYALE_RESOURCEHANDLER_H
 
-#include "gameDef.h"
+#include "game_def.h"
 
 #include <unordered_set>
 

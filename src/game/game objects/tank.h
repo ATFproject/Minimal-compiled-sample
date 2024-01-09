@@ -5,22 +5,22 @@
 #ifndef SFML_TANK_BATTLEROYALE_TANK_H
 #define SFML_TANK_BATTLEROYALE_TANK_H
 
-#include "gameDef.h"
+#include "game_def.h"
 
-#include "GameObject.h"
+#include "gameObject.h"
 
 namespace game {
   class Tank : public GameObject {
+  private:
+    float bodyDirRad, gunDirRad;
   public:
-    sf::Vector2i pos;
+    sf::Vector2f pos;
     sf::Vector2f bodyDir;
     sf::Vector2f gunDir;
 
     Tank();
 
     void tick( window * window, Game & game ) override;
-
-    void draw( window * window, Game & game ) override;
   };
 }
 

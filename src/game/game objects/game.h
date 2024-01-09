@@ -5,34 +5,32 @@
 #ifndef SFML_TANK_BATTLEROYALE_GAME_H
 #define SFML_TANK_BATTLEROYALE_GAME_H
 
-#include "game objects/Block.h"
-#include "game objects/Tank.h"
-#include "Timer.h"
+#include "game_def.h"
 
-#include "window.h"
+#include "timer.h"
 
 namespace game {
   class Game {
   private:
     window * win;
-    game::Timer timer;
     sf::Sprite bg;
-    sf::Text fps;
     sf::Font fpsFont;
-
-    bool isKeyPressed( sf::Keyboard::Scancode key );
+    sf::Text fps;
 
   public:
+    game::Timer timer;
+
     Game() = delete;
+
     std::vector<GameObject *> gameObjects;
 
     virtual ~Game();
 
     explicit Game( window * NewWin );
 
-    void setBg( const std::string & BgFileName ) {
-      bg.setTexture(*game::resourceHandler.LoadTexture(BgFileName));
-    }
+    void setBg( const std::string & BgFileName );
+
+    bool isKeyPressed( sf::Keyboard::Scancode key );
 
     Game & operator<<( GameObject * toAdd );
 

@@ -2,7 +2,8 @@
 // Created by livefish on 1/9/24.
 //
 
-#include "game.h"
+#include "game_mod.h"
+
 
 game::ResourceHandler game::resourceHandler;
 
@@ -11,15 +12,17 @@ bool game::Game::isKeyPressed( sf::Keyboard::Scancode key ) {
 }
 
 void game::Game::tick() {
-  timer.response();
-  fps.setString("FPS: " + std::to_string(timer.fps) + "; TIME: " + std::to_string(timer.time.asSeconds()));
+  if (win->isActive) {
+    timer.response();
+    fps.setString("FPS: " + std::to_string(timer.fps) + "; TIME: " + std::to_string(timer.time.asSeconds()));
 
-  if (isKeyPressed(sf::Keyboard::Scancode::Q))
-    win->win->close();
+    if (isKeyPressed(sf::Keyboard::Scancode::Q))
+      win->win->close();
 
 
-  for (auto & gameObject: gameObjects) {
-    gameObject->tick(win, *this);
+    for (auto & gameObject: gameObjects) {
+      gameObject->tick(win, *this);
+    }
   }
 }
 
@@ -53,6 +56,10 @@ game::Game::Game( window * newWindow ) : win(newWindow) {
   fps.setCharacterSize(12);
   fps.setFillColor(sf::Color::Blue);
   fps.setStyle(sf::Text::Bold | sf::Text::Underlined);
+}
+
+void game::Game::setBg( const std::string & BgFileName ) {
+  bg.setTexture(*game::resourceHandler.LoadTexture(BgFileName));
 }
 
 

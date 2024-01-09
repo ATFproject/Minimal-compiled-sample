@@ -2,7 +2,7 @@
 // Created by livefish on 1/9/24.
 //
 
-#include "WinEventHandler.h"
+#include "winEventHandler.h"
 
 #include <iostream>
 #include <cstring>
@@ -36,15 +36,11 @@ void WinEventHandler::handleNewEvents() const {
         break;
 
       case sf::Event::KeyPressed:
-        if (win->isActive) {
-          win->keys[event.key.scancode] = true;
-        }
+        win->keys[event.key.scancode] = true;
         break;
 
       case sf::Event::KeyReleased:
-        if (win->isActive) {
-          win->keys[event.key.scancode] = false;
-        }
+        win->keys[event.key.scancode] = false;
         break;
 
       default:

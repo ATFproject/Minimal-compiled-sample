@@ -5,8 +5,7 @@
 #ifndef SFML_TANK_BATTLEROYALE_GAMEOBJECT_H
 #define SFML_TANK_BATTLEROYALE_GAMEOBJECT_H
 
-#include "gameDef.h"
-#include "window.h"
+#include "game_def.h"
 
 namespace game {
   enum class GameObjectType {
@@ -24,9 +23,12 @@ namespace game {
     sf::Sprite sprite;
 
     GameObject() = delete;
-    virtual void tick( window * window, Game & game ) = 0;
 
-    virtual void draw( window * window, Game & game ) = 0;
+    virtual void tick( window * window, Game & game ) {};
+
+    virtual void draw( window * window, Game & game ) {
+      window->win->draw(sprite);
+    };
 
     virtual ~GameObject() = default;
   };

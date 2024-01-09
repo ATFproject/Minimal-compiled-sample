@@ -5,8 +5,11 @@
 #ifndef SFML_TANK_BATTLEROYALE_BLOCK_H
 #define SFML_TANK_BATTLEROYALE_BLOCK_H
 
-#include "GameObject.h"
-#include "ResourceHandler.h"
+#include "game_def.h"
+
+#include "gameObject.h"
+#include "resourceHandler.h"
+#include "game.h"
 
 namespace game {
   class Block : public GameObject {
@@ -14,17 +17,9 @@ namespace game {
     sf::Vector2f pos;
 
   public:
-    explicit Block(const sf::Vector2f &pos, const std::string &TexName) : GameObject(GameObjectType::BLOCK) {
+    explicit Block( const sf::Vector2f & pos, const std::string & TexName ) : GameObject(GameObjectType::BLOCK) {
       sprite.setTexture(*resourceHandler.LoadTexture(TexName));
       sprite.setPosition(pos);
-    }
-
-    void draw( window * window, Game &game ) override {
-      window->win->draw(sprite);
-    }
-
-    void tick( window * window, Game &game ) override {
-
     }
   };
 }

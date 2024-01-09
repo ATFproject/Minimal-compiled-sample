@@ -9,9 +9,8 @@
 #include <vector>
 #include <cmath>
 
-#include "../game/game.h"
-
-#include "WinEventHandler.h"
+#include "game_mod.h"
+#include "winEventHandler.h"
 
 class WinRenderThread {
 private:
@@ -28,7 +27,8 @@ public:
 
   explicit WinRenderThread( window * newWindow ) : win(newWindow), game(newWindow) {
     game << new game::Block(sf::Vector2f(100, 50), "block.png")
-         << new game::Block(sf::Vector2f(100, 150), "block 2.png");
+         << new game::Block(sf::Vector2f(100, 150), "block 2.png")
+         << new game::Tank();
 
     game.setBg("bg.png");
   }
