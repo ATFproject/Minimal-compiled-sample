@@ -13,7 +13,7 @@ namespace game {
   class ResourceHandler {
   private:
     std::vector<sf::Texture *> textures;
-
+  
   public:
     sf::Texture * LoadTexture( const std::string & TexName ) {
       auto * tex = new sf::Texture();
@@ -25,14 +25,14 @@ namespace game {
       textures.push_back(tex);
       return tex;
     }
-
+    
     void clean() {
-      std::for_each(textures.begin(), textures.end(), [&]( const auto & item ) {
-        delete item;
-      });
+      for (auto & texture: textures) {
+        delete texture;
+      }
       std::cout << "CLEANED!" << std::endl;
     }
-
+    
     virtual ~ResourceHandler() {
       // TODO: Add proper cleaning (WTF is happening?!) threads :(
     }

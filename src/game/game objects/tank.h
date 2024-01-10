@@ -17,9 +17,9 @@ namespace game {
     sf::Vector2f pos;
     sf::Vector2f bodyDir;
     sf::Vector2f gunDir;
-
+    
     Tank();
-
+    
     void tick( window * window, Game & game ) override;
   };
 }

@@ -2,5 +2,13 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/Debug/_deps/box2d-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/Debug/_deps/sfml-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/MinSizeRel/_deps/box2d-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/MinSizeRel/_deps/sfml-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/Release/_deps/box2d-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/Release/_deps/sfml-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/ReleaseWithDebInfo/_deps/box2d-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/ReleaseWithDebInfo/_deps/sfml-src" vcs="Git" />
   </component>
 </project>

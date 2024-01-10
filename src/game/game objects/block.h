@@ -15,7 +15,7 @@ namespace game {
   class Block : public GameObject {
   private:
     sf::Vector2f pos;
-
+  
   public:
     explicit Block( const sf::Vector2f & pos, const std::string & TexName ) : GameObject(GameObjectType::BLOCK) {
       sprite.setTexture(*resourceHandler.LoadTexture(TexName));

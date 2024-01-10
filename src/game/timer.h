@@ -12,13 +12,13 @@ namespace game {
   private:
     sf::Clock clock{};
     sf::Time previousTime = clock.getElapsedTime();
-
+  
   public:
     sf::Time time, deltaTime, fpsTime;
     double fps = 30;
-
+    
     Timer() = default;
-
+    
     void response() {
       time = clock.getElapsedTime();
       deltaTime = time - previousTime;

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeSharedSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" GENERATION_DIR="build/Debug" CONFIG_NAME="Debug" GENERATION_OPTIONS="-DBOX2D_BUILD_TESTBED:BOOL=OFF -DBOX2D_BUILD_UNIT_TESTS:BOOL=OFF" BUILD_OPTIONS="-j 7" />
+      <configuration PROFILE_NAME="Release" ENABLED="true" GENERATION_DIR="build/Release" CONFIG_NAME="Release" BUILD_OPTIONS="-j 7" />
+      <configuration PROFILE_NAME="RelWithDebInfo" ENABLED="true" GENERATION_DIR="build/ReleaseWithDebInfo" CONFIG_NAME="RelWithDebInfo" BUILD_OPTIONS="-j 7" />
+      <configuration PROFILE_NAME="MinSizeRel" ENABLED="true" GENERATION_DIR="build/MinSizeRel" CONFIG_NAME="MinSizeRel" BUILD_OPTIONS="-j 7" />
+    </configurations>
+  </component>
+</project>

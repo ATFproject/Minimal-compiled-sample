@@ -42,7 +42,7 @@ int main() {
   
   sf::ContextSettings winContextSettings(0, 0, 4); // set antialiasing level to 4
   sf::RenderWindow win(sf::VideoMode(800, 600), "Livefish-Example tanks game!", sf::Style::Default, winContextSettings);
-  win.setVerticalSyncEnabled(true);
+  win.setVerticalSyncEnabled(false);
   win.setActive(false);
   
   sf::Image icon;

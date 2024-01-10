@@ -13,23 +13,23 @@ namespace game {
     TANK,
     NONE,
   };
-
+  
   class GameObject {
   protected:
     explicit GameObject( GameObjectType newType ) : type(newType) {}
-
+  
   public:
     GameObjectType type;
     sf::Sprite sprite;
-
+    
     GameObject() = delete;
-
+    
     virtual void tick( window * window, Game & game ) {};
-
+    
     virtual void draw( window * window, Game & game ) {
       window->win->draw(sprite);
     };
-
+    
     virtual ~GameObject() = default;
   };
 }

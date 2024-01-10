@@ -16,11 +16,11 @@ void game::Game::tick() {
   if (win->isActive) {
     timer.response();
     fps.setString("FPS: " + std::to_string(timer.fps) + "; TIME: " + std::to_string(timer.time.asSeconds()));
-
+    
     if (isKeyPressed(sf::Keyboard::Scancode::Q))
       win->win->close();
-
-
+    
+    
     for (auto & gameObject: gameObjects) {
       gameObject->tick(win, *this);
     }
@@ -38,7 +38,7 @@ void game::Game::draw() {
   
   mainView.setRotation(rotation);
   win->win->setView(mainView);
-
+  
   for (auto & gameObject: gameObjects) {
     gameObject->draw(win, *this);
   }

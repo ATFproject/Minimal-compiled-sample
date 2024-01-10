@@ -15,10 +15,10 @@ private:
 
 public:
   WinEventHandler() = delete;
-
+  
   explicit WinEventHandler( window * newWindow ) : win(newWindow) {}
-
-  void handleNewEvents(game::Game &game) const;
+  
+  void handleNewEvents( game::Game & game ) const;
 };
 
 

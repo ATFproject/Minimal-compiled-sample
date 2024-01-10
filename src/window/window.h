@@ -15,10 +15,9 @@ public:
   sf::Vector2i size;
   bool isActive;
   bool keys[256]{false};
-  bool keysClick[256]{false};
-
+  
   window() = delete;
-
+  
   explicit window( sf::RenderWindow * window ) : win(window), isActive(true) {};
 };
 

@@ -16,27 +16,29 @@ namespace game {
     sf::Sprite bg;
     sf::Font fpsFont;
     sf::Text fps;
-
+  
   public:
     game::Timer timer;
     sf::View mainView;
-
+    
     Game() = delete;
-
+    
     std::vector<GameObject *> gameObjects;
-
+    
     virtual ~Game();
-
+    
     explicit Game( window * NewWin );
-
+    
     void setBg( const std::string & BgFileName );
-    void resize( const sf::Vector2f &NewSize);
+    
+    void resize( const sf::Vector2f & NewSize );
+    
     bool isKeyPressed( sf::Keyboard::Scancode key );
-
+    
     Game & operator<<( GameObject * toAdd );
-
+    
     void tick();
-
+    
     void draw();
   };
 }

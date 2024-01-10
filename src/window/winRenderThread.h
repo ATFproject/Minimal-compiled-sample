@@ -16,7 +16,7 @@ class WinRenderThread {
 private:
   window * win;
   game::Game game;
-
+  
   void drawFrame() {
     game.tick();
     game.draw();
@@ -24,19 +24,19 @@ private:
 
 public:
   WinRenderThread() = delete;
-
+  
   explicit WinRenderThread( window * newWindow ) : win(newWindow), game(newWindow) {
     game << new game::Block(sf::Vector2f(100, 50), "block.png")
          << new game::Block(sf::Vector2f(100, 150), "block 2.png")
          << new game::Tank();
-
+    
     game.setBg("bg.png");
   }
-
+  
   void startRendering() {
     win->win->setActive(true);
     WinEventHandler eventHandler(win);
-
+    
     while (win->win->isOpen()) {
       eventHandler.handleNewEvents(game);
       drawFrame();
