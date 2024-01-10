@@ -3,8 +3,6 @@
 //
 
 #include "game_mod.h"
-#include "game.h"
-
 
 game::ResourceHandler game::resourceHandler;
 
@@ -71,9 +69,11 @@ void game::Game::setBg( const std::string & BgFileName ) {
   bg.setTexture(*game::resourceHandler.LoadTexture(BgFileName));
 }
 
-void game::Game::resize( const sf::Vector2f & NewSize ) {
-  sf::FloatRect visibleArea(0.f, 0.f, NewSize.x, NewSize.y);
+void game::Game::resize( float newW, float newH ) {
+  sf::FloatRect visibleArea(0.f, 0.f, newW, newH);
   mainView = sf::View(visibleArea);
 }
+
+
 
 

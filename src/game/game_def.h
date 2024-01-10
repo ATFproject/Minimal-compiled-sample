@@ -15,9 +15,9 @@
 
 namespace game {
   template<typename T>
-    inline sf::Vector2 <T> norm( const sf::Vector2 <T> & toNorm ) {
+    inline sf::Vector2<T> norm( const sf::Vector2<T> & toNorm ) {
       float len = sqrtf(toNorm.x * toNorm.x + toNorm.y * toNorm.y);
-      return sf::Vector2 < T > {toNorm.x / len, toNorm.y / len};
+      return sf::Vector2<T>{toNorm.x / len, toNorm.y / len};
     }
   
   class Timer;
@@ -25,11 +25,12 @@ namespace game {
   class ResourceHandler;
   extern ResourceHandler resourceHandler;
   
+  class Keyboard;
+  
   class Game;
   
   enum class GameObjectType;
   class GameObject;
-  class Keyboard;
   class Block;
   class Tank;
 }

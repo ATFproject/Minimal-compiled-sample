@@ -37,7 +37,7 @@ void WinEventHandler::handleNewEvents( game::Game & game ) const {
         win->size.x = event.size.width;
         win->size.y = event.size.height;
         std::cout << "Resized: " << event.size.width << ", " << event.size.height << std::endl;
-        game.resize(sf::Vector2f(event.size.width, event.size.height));
+        game.resize(event.size.width, event.size.height);
         break;
       
       case sf::Event::KeyPressed:

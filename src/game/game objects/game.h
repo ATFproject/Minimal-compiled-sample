@@ -5,6 +5,7 @@
 #ifndef SFML_TANK_BATTLEROYALE_GAME_H
 #define SFML_TANK_BATTLEROYALE_GAME_H
 
+#include <ostream>
 #include "game_def.h"
 
 #include "timer.h"
@@ -21,17 +22,17 @@ namespace game {
     game::Timer timer;
     sf::View mainView;
     
-    Game() = delete;
-    
     std::vector<GameObject *> gameObjects;
     
-    virtual ~Game();
+    Game() = delete;
     
     explicit Game( window * NewWin );
     
+    virtual ~Game();
+    
     void setBg( const std::string & BgFileName );
     
-    void resize( const sf::Vector2f & NewSize );
+    void resize( float newW, float newH );
     
     bool isKeyPressed( sf::Keyboard::Scancode key );
     

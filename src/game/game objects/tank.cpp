@@ -4,8 +4,6 @@
 
 #include "game_mod.h"
 
-#include <cmath>
-
 void game::Tank::tick( window * window, game::Game & game ) {
   for (auto & gameObject: game.gameObjects) {
     if (gameObject != this) {
@@ -80,7 +78,6 @@ game::Tank::Tank() : GameObject(GameObjectType::TANK) {
   
   sprite.setOrigin(sprite.getGlobalBounds().width / 2, sprite.getGlobalBounds().height / 2);
   sprite.setPosition(pos);
-  
 }
 
 

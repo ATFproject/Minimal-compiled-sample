@@ -9,7 +9,6 @@
 
 #include "gameObject.h"
 #include "resourceHandler.h"
-#include "game.h"
 
 namespace game {
   class Block : public GameObject {

@@ -17,14 +17,14 @@ namespace game {
     sf::Time time, deltaTime, fpsTime;
     double fps = 30;
     
-    Timer() = default;
-    
     void response() {
       time = clock.getElapsedTime();
       deltaTime = time - previousTime;
       if (time.asSeconds() - fpsTime.asSeconds() > 0.5) {
         fps = 1.0 / (time.asSeconds() - previousTime.asSeconds());
         fpsTime = time;
+        
+        // TODO: Fix fps
       }
       previousTime = time;
     }

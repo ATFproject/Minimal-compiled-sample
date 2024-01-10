@@ -11,7 +11,6 @@ namespace game {
   enum class GameObjectType {
     BLOCK,
     TANK,
-    NONE,
   };
   
   class GameObject {
