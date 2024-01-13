@@ -8,8 +8,6 @@
 #include "SFML/Graphics.hpp"
 
 class window {
-private:
-  friend class WinEventHandler;
 public:
   sf::RenderWindow * win;
   sf::Vector2i size;

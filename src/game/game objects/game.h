@@ -21,14 +21,17 @@ namespace game {
   public:
     game::Timer timer;
     sf::View mainView;
-    
     std::vector<GameObject *> gameObjects;
+    resourceHandler resHandler;
     
     Game() = delete;
     
     explicit Game( window * NewWin );
     
     virtual ~Game();
+    
+    template<typename T>
+      T & getRes( const std::string &FileName );
     
     void setBg( const std::string & BgFileName );
     

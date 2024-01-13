@@ -26,15 +26,20 @@ public:
   WinRenderThread() = delete;
   
   explicit WinRenderThread( window * newWindow ) : win(newWindow), game(newWindow) {
-    game << new game::Block(sf::Vector2f(100, 50), "block.png")
-         << new game::Block(sf::Vector2f(100, 150), "block 2.png")
-         << new game::Tank();
+    game << new game::Block(sf::Vector2f(100, 50), game.getRes<game::texture>("block.png"))
+         << new game::Block(sf::Vector2f(100, 150), game.getRes<game::texture>("block.png"))
+        << new game::Tank(game.getRes<game::texture>("tanks/tank raw.png"));
     
+    /*sf::Sound sound;
+    sf::SoundBuffer sb = game.resHandler.get<game::soundBuffer>("ball.wav");
+    sound.setBuffer(sb);
+    sound.play();
+    */
+    // TODO: Open al does not work: some linux problem, loo into different libs later
     game.setBg("bg.png");
   }
   
   void startRendering() {
-    win->win->setActive(true);
     WinEventHandler eventHandler(win);
     
     while (win->win->isOpen()) {

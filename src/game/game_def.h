@@ -22,8 +22,11 @@ namespace game {
   
   class Timer;
   
-  class ResourceHandler;
-  extern ResourceHandler resourceHandler;
+  class asset;
+  class texture;
+  class soundBuffer;
+  
+  class resourceHandler;
   
   class Keyboard;
   

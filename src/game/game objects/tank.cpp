@@ -67,8 +67,8 @@ void game::Tank::tick( window * window, game::Game & game ) {
   sprite.setRotation(bodyDirRad / M_PI * 180 + 90);
 }
 
-game::Tank::Tank() : GameObject(GameObjectType::TANK) {
-  sprite.setTexture(*resourceHandler.LoadTexture("tanks/tank raw.png"));
+game::Tank::Tank( const sf::Texture & Tex) : GameObject(GameObjectType::TANK) {
+  sprite.setTexture(Tex);
   sprite.setColor(sf::Color::Black);
   
   pos = {300, 200};

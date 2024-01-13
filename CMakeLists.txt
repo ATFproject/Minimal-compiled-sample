@@ -30,7 +30,7 @@ file(GLOB_RECURSE SOURCES "src/*.cpp")
 add_executable(${PROJECT_NAME} ${SOURCES})
 
 # Link SFML and Box2D to final binary and set C++ standard for it
-target_link_libraries(${PROJECT_NAME} PRIVATE sfml-graphics PRIVATE box2d)
+target_link_libraries(${PROJECT_NAME} PRIVATE sfml-graphics PRIVATE sfml-audio PRIVATE box2d)
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
 
 # Set output file name

@@ -3,8 +3,8 @@
 //
 
 #include "game_mod.h"
+#include "game.h"
 
-game::ResourceHandler game::resourceHandler;
 
 bool game::Game::isKeyPressed( sf::Keyboard::Scancode key ) {
   return win->keys[key];
@@ -66,13 +66,18 @@ game::Game::Game( window * newWindow ) : win(newWindow) {
 }
 
 void game::Game::setBg( const std::string & BgFileName ) {
-  bg.setTexture(*game::resourceHandler.LoadTexture(BgFileName));
+  bg.setTexture(getRes<texture>(BgFileName));
 }
 
 void game::Game::resize( float newW, float newH ) {
   sf::FloatRect visibleArea(0.f, 0.f, newW, newH);
   mainView = sf::View(visibleArea);
 }
+
+template<typename T>
+  T & game::Game::getRes( const std::string & FileName ) {
+    return resHandler.get<T>(FileName);
+  }
 
 
 

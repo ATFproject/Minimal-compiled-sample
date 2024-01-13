@@ -8,7 +8,7 @@
 #include "game_def.h"
 
 #include "gameObject.h"
-#include "resourceHandler.h"
+#include "resources/resourceHandler.h"
 
 namespace game {
   class Block : public GameObject {
@@ -16,8 +16,8 @@ namespace game {
     sf::Vector2f pos;
   
   public:
-    explicit Block( const sf::Vector2f & pos, const std::string & TexName ) : GameObject(GameObjectType::BLOCK) {
-      sprite.setTexture(*resourceHandler.LoadTexture(TexName));
+    explicit Block( const sf::Vector2f & pos, const sf::Texture & Tex ) : GameObject(GameObjectType::BLOCK) {
+      sprite.setTexture(Tex);
       sprite.setPosition(pos);
     }
   };

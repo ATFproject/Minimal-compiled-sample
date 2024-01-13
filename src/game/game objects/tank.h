@@ -18,7 +18,8 @@ namespace game {
     sf::Vector2f bodyDir;
     sf::Vector2f gunDir;
     
-    Tank();
+    Tank() = delete;
+    explicit Tank(const sf::Texture &Tex);
     
     void tick( window * window, Game & game ) override;
   };
