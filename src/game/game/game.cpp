@@ -45,8 +45,8 @@ void game::Game::draw() {
 
 game::Game::~Game() = default;
 
-game::Game & game::Game::operator<<( GameObject * toAdd ) {
-  gameObjects.push_back(std::shared_ptr<GameObject>(toAdd));
+game::Game & game::Game::operator<<( gameObject * toAdd ) {
+  gameObjects.push_back(std::shared_ptr<gameObject>(toAdd));
   return *this;
 }
 

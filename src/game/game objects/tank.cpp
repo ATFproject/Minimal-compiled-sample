@@ -9,7 +9,7 @@
 void game::Tank::tick( window * window, game::Game & game ) {
   for (auto & gameObject: game.gameObjects) {
     if (gameObject.get() != this) {
-      if (gameObject->type == GameObjectType::BLOCK
+      if (gameObject->type == gameObjectType::BLOCK
           && gameObject->sprite.getGlobalBounds().intersects(sprite.getGlobalBounds())) {
         pos = {300, 200};
       }
@@ -36,7 +36,7 @@ void game::Tank::tick( window * window, game::Game & game ) {
   game.mainView.setCenter(pos);
 }
 
-game::Tank::Tank( const sf::Texture & Tex, const sf::Color & Col ) : GameObject(GameObjectType::TANK) {
+game::Tank::Tank( const sf::Texture & Tex, const sf::Color & Col ) : gameObject(gameObjectType::TANK) {
   sprite.setTexture(Tex);
   sprite.setColor(Col);
   

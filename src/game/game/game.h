@@ -23,7 +23,7 @@ namespace game {
   public:
     game::Timer timer;
     sf::View mainView;
-    std::vector<std::shared_ptr<GameObject>> gameObjects;
+    std::vector<std::shared_ptr<gameObject>> gameObjects;
     resourceHandler resHandler;
     gameSettings settings;
     
@@ -44,7 +44,7 @@ namespace game {
     
     bool isKeyPressed( sf::Keyboard::Scancode key );
     
-    Game & operator<<( GameObject * toAdd );
+    Game & operator<<( gameObject * toAdd );
     
     void tick();
     

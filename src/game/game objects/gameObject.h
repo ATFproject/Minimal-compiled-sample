@@ -8,36 +8,27 @@
 #include "game_def.h"
 
 namespace game {
-  enum class GameObjectType {
+  enum class gameObjectType {
     BLOCK,
     TANK,
   };
   
-  class GameObject {
+  class gameObject {
   protected:
-    explicit GameObject( GameObjectType newType ) : type(newType) {}
+    explicit gameObject( gameObjectType newType ) : type(newType) {}
   
   public:
-    GameObjectType type;
+    gameObjectType type;
     sf::Sprite sprite;
     sf::RectangleShape hitbox;
     
-    GameObject() = delete;
+    gameObject() = delete;
     
-    virtual void tick( window * window, Game & game ) {};
+    virtual void tick( window * window, Game & game );
     
-    virtual void draw( window * window, Game & game ) {
-      hitbox.setOutlineColor(sf::Color::Red);
-      hitbox.setOutlineThickness(1);
-      hitbox.setFillColor(sf::Color::Transparent);
-      hitbox.setPosition(sprite.getGlobalBounds().getPosition());
-      hitbox.setSize(sprite.getGlobalBounds().getSize());
-      window->win->draw(hitbox);
-      
-      window->win->draw(sprite);
-    };
+    virtual void draw( window * window, Game & game );
     
-    virtual ~GameObject() = default;
+    virtual ~gameObject() = default;
   };
 }
 

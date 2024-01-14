@@ -46,8 +46,12 @@ int main() {
   icon.loadFromFile("../resources/images/icon.png");
   win.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
   
+  game::gameSettings settings {
+    .showHitboxes = true,
+  };
+  
   window gameWindow(&win);
-  WinRenderThread renderThread(&gameWindow);
+  WinRenderThread renderThread(&gameWindow, settings);
   renderThread.startRendering();
   
   return 0;

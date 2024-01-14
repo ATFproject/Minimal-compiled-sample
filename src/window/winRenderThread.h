@@ -25,7 +25,7 @@ private:
 public:
   WinRenderThread() = delete;
   
-  explicit WinRenderThread( window * newWindow ) : win(newWindow), game(newWindow) {
+  WinRenderThread( window * newWindow, game::gameSettings settings ) : win(newWindow), game(newWindow, settings) {
     /*game << new game::Block(sf::Vector2f(100, 50), game.getRes<game::texture>("block.png"))
          << new game::Block(sf::Vector2f(100, 150), game.getRes<game::texture>("block.png"))
          << new game::Tank(game.getRes<game::texture>("tanks/tank raw.png"));*/

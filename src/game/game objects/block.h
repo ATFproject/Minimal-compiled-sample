@@ -11,12 +11,12 @@
 #include "resources/resourceHandler.h"
 
 namespace game {
-  class Block : public GameObject {
+  class Block : public gameObject {
   private:
     sf::Vector2f pos;
   
   public:
-    explicit Block( const sf::Vector2f & pos, const sf::Texture & Tex ) : GameObject(GameObjectType::BLOCK) {
+    explicit Block( const sf::Vector2f & pos, const sf::Texture & Tex ) : gameObject(gameObjectType::BLOCK) {
       sprite.setTexture(Tex);
       sprite.setPosition(pos);
       sprite.setScale(2, 2);

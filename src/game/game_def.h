@@ -37,8 +37,8 @@ namespace game {
   class Game;
   class gameSettings;
   
-  enum class GameObjectType;
-  class GameObject;
+  enum class gameObjectType;
+  class gameObject;
   class Block;
   class Tank;
 }

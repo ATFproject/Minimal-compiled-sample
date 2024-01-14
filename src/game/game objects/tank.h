@@ -10,7 +10,7 @@
 #include "gameObject.h"
 
 namespace game {
-  class Tank : public GameObject {
+  class Tank : public gameObject {
   private:
     float bodyDirRad, gunDirRad;
     float rotationSpeed;
