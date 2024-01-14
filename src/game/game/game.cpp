@@ -17,6 +17,7 @@ void game::Game::tick() {
     if (isKeyPressed(sf::Keyboard::Scancode::Q))
       win->win->close();
     
+    world.Step(deltaTime(), 8, 3);
     
     for (auto & gameObject: gameObjects) {
       gameObject->tick(win, *this);
@@ -47,6 +48,8 @@ game::Game::~Game() = default;
 
 game::Game & game::Game::operator<<( gameObject * toAdd ) {
   gameObjects.push_back(std::shared_ptr<gameObject>(toAdd));
+  toAdd->addToWorld(world);
+
   return *this;
 }
 

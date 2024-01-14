@@ -6,7 +6,7 @@
 #define SFML_TANK_BATTLEROYALE_GAME_MOD_H
 
 #include "game objects/block.h"
-#include "game objects/tank.h"
+#include "game objects/tank/tank.h"
 #include "game/game.h"
 
 #include "window.h"

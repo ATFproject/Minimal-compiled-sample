@@ -23,6 +23,7 @@ namespace game {
   public:
     game::Timer timer;
     sf::View mainView;
+
     std::vector<std::shared_ptr<gameObject>> gameObjects;
     resourceHandler resHandler;
     gameSettings settings;

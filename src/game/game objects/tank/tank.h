@@ -7,7 +7,7 @@
 
 #include "game_def.h"
 
-#include "gameObject.h"
+#include "game objects/game object/gameObject.h"
 
 namespace game {
   class Tank : public gameObject {
@@ -25,6 +25,8 @@ namespace game {
     explicit Tank( const sf::Texture & Tex, const sf::Color & Col = sf::Color::White );
     
     void tick( window * window, Game & game ) override;
+    
+    virtual void addToWorld( b2World & world ) override;
   };
 }
 

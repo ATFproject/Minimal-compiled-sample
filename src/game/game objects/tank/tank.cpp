@@ -50,9 +50,12 @@ game::Tank::Tank( const sf::Texture & Tex, const sf::Color & Col ) : gameObject(
   
   sprite.setOrigin(sprite.getGlobalBounds().width / 2, sprite.getGlobalBounds().height / 2);
   sprite.setPosition(pos);
-  sprite.setScale(2, 2);
+  sprite.setScale(3, 3);
 }
 
+void game::Tank::addToWorld( b2World & world ) {
+//  gameObject::addToWorld(world);
+}
 
 
 #pragma clang diagnostic pop

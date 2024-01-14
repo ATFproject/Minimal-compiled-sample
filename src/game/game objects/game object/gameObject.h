@@ -15,16 +15,22 @@ namespace game {
   
   class gameObject {
   protected:
-    explicit gameObject( gameObjectType newType ) : type(newType) {}
+    explicit gameObject( gameObjectType newType ) : type(newType), body(nullptr) {}
   
   public:
     gameObjectType type;
     sf::Sprite sprite;
     sf::RectangleShape hitbox;
     
+    b2Body * body;
+    b2Fixture *fix;
+    b2BodyDef bodyDef;
+    
     gameObject() = delete;
     
     virtual void tick( window * window, Game & game );
+    
+    virtual void addToWorld(b2World &world);
     
     virtual void draw( window * window, Game & game );
     

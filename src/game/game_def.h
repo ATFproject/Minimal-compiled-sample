@@ -16,6 +16,8 @@
 #include "window.h"
 
 namespace game {
+  const int PPM = 30; // Pixels per meter for box2D conversion
+  
   template<typename T>
     inline sf::Vector2<T> norm( const sf::Vector2<T> & toNorm ) {
       float len = sqrtf(toNorm.x * toNorm.x + toNorm.y * toNorm.y);
