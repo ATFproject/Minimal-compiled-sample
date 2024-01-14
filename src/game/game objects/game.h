@@ -31,7 +31,9 @@ namespace game {
     virtual ~Game();
     
     template<typename T>
-      T & getRes( const std::string &FileName );
+      T & getRes( const std::string &FileName ) {
+        return resHandler.get<T>(FileName);
+      }
     
     void setBg( const std::string & BgFileName );
     

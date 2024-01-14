@@ -15,7 +15,7 @@ namespace game {
     explicit asset( std::string FileName ) : fileName(std::move(FileName)) {}
     
     template<typename T>
-      std::shared_ptr<T> load( const std::string & FileName ) {
+      static std::shared_ptr<T> load( const std::string & FileName ){
         std::string path = "../resources/" + FileName;
         auto data = std::make_shared<T>();
         bool res;

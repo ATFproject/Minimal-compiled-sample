@@ -5,7 +5,6 @@
 #include "game_mod.h"
 #include "game.h"
 
-
 bool game::Game::isKeyPressed( sf::Keyboard::Scancode key ) {
   return win->keys[key];
 }
@@ -73,11 +72,6 @@ void game::Game::resize( float newW, float newH ) {
   sf::FloatRect visibleArea(0.f, 0.f, newW, newH);
   mainView = sf::View(visibleArea);
 }
-
-template<typename T>
-  T & game::Game::getRes( const std::string & FileName ) {
-    return resHandler.get<T>(FileName);
-  }
 
 
 

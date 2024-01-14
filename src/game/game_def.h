@@ -25,6 +25,7 @@ namespace game {
   class asset;
   class texture;
   class soundBuffer;
+  class music;
   
   class resourceHandler;
   
