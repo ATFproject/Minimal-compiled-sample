@@ -12,6 +12,7 @@ namespace game {
   private:
     sf::Clock clock{};
     sf::Time previousTime = clock.getElapsedTime();
+    int frameCounter = 0;
   
   public:
     sf::Time time, deltaTime, fpsTime;
@@ -20,11 +21,11 @@ namespace game {
     void response() {
       time = clock.getElapsedTime();
       deltaTime = time - previousTime;
+      frameCounter++;
       if (time.asSeconds() - fpsTime.asSeconds() > 0.5) {
-        fps = 1.0 / (time.asSeconds() - previousTime.asSeconds());
+        fps = frameCounter / static_cast<float>((time.asSeconds() - fpsTime.asSeconds())); // NOLINT(*-narrowing-conversions)
         fpsTime = time;
-        
-        // TODO: Fix fps
+        frameCounter = 0;
       }
       previousTime = time;
     }
