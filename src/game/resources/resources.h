@@ -18,7 +18,16 @@ namespace game {
       T & load( const std::string & FileName ) {
         std::string path = "../resources/" + FileName;
         auto * data = new T;
-        if (!data->loadFromFile(path)) {
+        bool res;
+        if constexpr (requires { data->loadFromFile(path); }) {
+          res = data->loadFromFile(path);
+        } else if constexpr (requires { data->openFromFile(path); }) {
+          res = data->openFromFile(path);
+        } else {
+          std::cerr << "No matching load function found!" << std::endl;
+          res = false;
+        }
+        if (!res) {
           std::cerr << "Failed to load \"" << path << "\", exiting'" << std::endl;
           exit(30);
         }
@@ -36,7 +45,7 @@ namespace game {
     sf::Texture data;
     
     explicit texture( const std::string & FileName ) : asset(FileName) {
-      data = load<sf::Texture>("/images/" + FileName);
+      data = load<sf::Texture>("images/" + FileName);
     }
     
     operator const sf::Texture &() const { // NOLINT(*-explicit-constructor)
@@ -49,10 +58,23 @@ namespace game {
     sf::SoundBuffer data;
     
     explicit soundBuffer( const std::string & FileName ) : asset(FileName) {
-      data = load<sf::SoundBuffer>("/sounds/" + FileName);
+      data = load<sf::SoundBuffer>("sounds/" + FileName);
     }
     
     operator const sf::SoundBuffer &() const { // NOLINT(*-explicit-constructor)
+      return data;
+    }
+  };
+  
+  class music : public asset {
+  public:
+    sf::Music * data;
+    
+    explicit music( const std::string & FileName ) : asset(FileName) {
+      data = &load<sf::Music>("sounds/" + FileName);
+    }
+    
+    operator sf::Music *() const { // NOLINT(*-explicit-constructor)
       return data;
     }
   };

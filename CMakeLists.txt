@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Set output directory for the binary and disable shared library building
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/out)
-option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
+option(BUILD_SHARED_LIBS "Build shared libraries" ON)
 
 # Include tool for content fetching
 include(FetchContent REQUIRED)
@@ -30,7 +30,11 @@ file(GLOB_RECURSE SOURCES "src/*.cpp")
 add_executable(${PROJECT_NAME} ${SOURCES})
 
 # Link SFML and Box2D to final binary and set C++ standard for it
-target_link_libraries(${PROJECT_NAME} PRIVATE sfml-graphics PRIVATE sfml-audio PRIVATE box2d)
+target_link_libraries(${PROJECT_NAME}
+        PRIVATE sfml-graphics
+        PRIVATE sfml-audio
+        PRIVATE box2d
+)
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
 
 # Set output file name
