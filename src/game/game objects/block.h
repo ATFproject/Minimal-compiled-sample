@@ -15,16 +15,21 @@ namespace game {
   class Block : public gameObject {
   private:
     b2PolygonShape shape;
-    sf::Texture &tex;
+    sf::Texture & tex;
+    sf::Vector2f size;
+    float maxVel, friction;
+  
   public:
-    explicit Block( const sf::Vector2f & pos, const sf::Vector2f & size, sf::Texture & Tex ) : gameObject(
-            gameObjectType::BLOCK), tex(Tex) {
+    explicit Block( const sf::Vector2f & pos, const sf::Vector2f & size, sf::Texture & Tex ) :
+            gameObject(gameObjectType::BLOCK), tex(Tex), size(size) {
       bodyDef.position.Set(pos.x, pos.y);
       bodyDef.angle = 0.f;
       bodyDef.allowSleep = true;
       bodyDef.fixedRotation = false;
       bodyDef.type = b2_dynamicBody; /* No moving on collisions, can move itself */
       shape.SetAsBox(size.x / 2, size.y / 2);
+      maxVel = 50;
+      friction = 0.96;
     }
     
     void addToWorld( b2World & world ) override {
@@ -38,6 +43,7 @@ namespace game {
       fix = body->CreateFixture(&blockFixDef);
       
       sprite.setTexture(tex);
+      sprite.setScale(size.x / tex.getSize().x , size.y / tex.getSize().y);
       sprite.setOrigin(tex.getSize().x / 2, tex.getSize().y / 2);
       sprite.setPosition(body->GetPosition().x, body->GetPosition().y);
       sprite.setRotation(body->GetAngle() * 180 / b2_pi);
@@ -46,15 +52,27 @@ namespace game {
     void tick( window * window, Game & game ) override {
       static int angle = 0;
       gameObject::tick(window, game);
-      if (game.isKeyPressed(sf::Keyboard::Scancode::Up))
-        body->ApplyAngularImpulse(1000, true);
-      if (game.isKeyPressed(sf::Keyboard::Scancode::Down))
-        body->ApplyAngularImpulse(-1000, true);
-      if (game.isKeyPressed(sf::Keyboard::Scancode::Right))
-        body->ApplyLinearImpulse(b2Vec2(1000, 0), body->GetWorldCenter(), true);
-      if (game.isKeyPressed(sf::Keyboard::Scancode::Left))
-        body->ApplyLinearImpulse(b2Vec2(-1000, 0), body->GetWorldCenter(), true);
       
+      if (game.isKeyPressed(sf::Keyboard::Scancode::Up))
+        body->SetAngularVelocity(5);
+      else if (game.isKeyPressed(sf::Keyboard::Scancode::Down))
+        body->SetAngularVelocity(-5);
+      else
+        body->SetAngularVelocity(0);
+      
+      b2Vec2 vel = body->GetLinearVelocity();
+      float desiredVel;
+      if (game.isKeyPressed(sf::Keyboard::Scancode::Right))
+        desiredVel = b2Min(vel.x + 0.1f, maxVel);
+      else if (game.isKeyPressed(sf::Keyboard::Scancode::Left))
+        desiredVel = b2Max(vel.x - 0.1f, -maxVel);
+      else
+        desiredVel = vel.x * friction;
+      
+      float velChange = desiredVel - vel.x;
+      float impulse = body->GetMass() * velChange;
+      
+      body->ApplyLinearImpulse(b2Vec2(impulse, 0), body->GetWorldCenter(), true);
       
       sprite.setPosition(body->GetPosition().x, body->GetPosition().y);
       sprite.setRotation(body->GetAngle() * 180 / b2_pi);
