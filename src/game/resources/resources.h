@@ -5,9 +5,9 @@
 #ifndef SFML_TANK_BATTLEROYALE_RESOURCES_H
 #define SFML_TANK_BATTLEROYALE_RESOURCES_H
 
-#include <utility>
-
 #include "game_def.h"
+
+#include <memory>
 
 namespace game {
   class asset {
@@ -15,9 +15,9 @@ namespace game {
     explicit asset( std::string FileName ) : fileName(std::move(FileName)) {}
     
     template<typename T>
-      T & load( const std::string & FileName ) {
+      std::shared_ptr<T> load( const std::string & FileName ) {
         std::string path = "../resources/" + FileName;
-        auto * data = new T;
+        auto data = std::make_shared<T>();
         bool res;
         if constexpr (requires { data->loadFromFile(path); }) {
           res = data->loadFromFile(path);
@@ -31,7 +31,7 @@ namespace game {
           std::cerr << "Failed to load \"" << path << "\", exiting'" << std::endl;
           exit(30);
         }
-        return *data;
+        return data;
       }
   
   public:
@@ -42,40 +42,40 @@ namespace game {
   
   class texture : public asset {
   public:
-    sf::Texture data;
+    std::shared_ptr<sf::Texture> data;
     
     explicit texture( const std::string & FileName ) : asset(FileName) {
       data = load<sf::Texture>("images/" + FileName);
     }
     
     operator const sf::Texture &() const { // NOLINT(*-explicit-constructor)
-      return data;
+      return *data;
     }
   };
   
   class soundBuffer : public asset {
   public:
-    sf::SoundBuffer data;
+    std::shared_ptr<sf::SoundBuffer> data;
     
     explicit soundBuffer( const std::string & FileName ) : asset(FileName) {
       data = load<sf::SoundBuffer>("sounds/" + FileName);
     }
     
     operator const sf::SoundBuffer &() const { // NOLINT(*-explicit-constructor)
-      return data;
+      return *data;
     }
   };
   
   class music : public asset {
   public:
-    sf::Music * data;
+    std::shared_ptr<sf::Music> data;
     
     explicit music( const std::string & FileName ) : asset(FileName) {
-      data = &load<sf::Music>("sounds/" + FileName);
+      data = load<sf::Music>("sounds/" + FileName);
     }
     
     operator sf::Music *() const { // NOLINT(*-explicit-constructor)
-      return data;
+      return data.get();
     }
   };
 }
