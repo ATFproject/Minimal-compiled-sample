@@ -8,6 +8,8 @@
 #include "SFML/Graphics.hpp"
 #include "SFML/Audio.hpp"
 
+#include <box2d/box2d.h>
+
 #include <iostream>
 #include <cmath>
 
@@ -26,12 +28,14 @@ namespace game {
   class texture;
   class soundBuffer;
   class music;
+  class font;
   
   class resourceHandler;
   
   class Keyboard;
   
   class Game;
+  class gameSettings;
   
   enum class GameObjectType;
   class GameObject;

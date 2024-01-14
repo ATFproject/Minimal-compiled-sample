@@ -78,6 +78,19 @@ namespace game {
       return data.get();
     }
   };
+  
+  class font : public asset {
+  public:
+    std::shared_ptr<sf::Font> data;
+    
+    explicit font( const std::string & FileName ) : asset(FileName) {
+      data = load<sf::Font>("fonts/" + FileName);
+    }
+    
+    operator sf::Font &() const { // NOLINT(*-explicit-constructor)
+      return *data;
+    }
+  };
 }
 
 #endif //SFML_TANK_BATTLEROYALE_RESOURCES_H

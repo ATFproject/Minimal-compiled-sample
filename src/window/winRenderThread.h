@@ -26,10 +26,12 @@ public:
   WinRenderThread() = delete;
   
   explicit WinRenderThread( window * newWindow ) : win(newWindow), game(newWindow) {
-    game << new game::Block(sf::Vector2f(100, 50), game.getRes<game::texture>("block.png"))
+    /*game << new game::Block(sf::Vector2f(100, 50), game.getRes<game::texture>("block.png"))
          << new game::Block(sf::Vector2f(100, 150), game.getRes<game::texture>("block.png"))
-         << new game::Tank(game.getRes<game::texture>("tanks/tank raw.png"));
+         << new game::Tank(game.getRes<game::texture>("tanks/tank raw.png"));*/
     
+    game << new game::Tank(game.getRes<game::texture>("tanks/tank raw.png"), sf::Color::Yellow);
+    game << new game::Block(sf::Vector2f(100, 50), game.getRes<game::texture>("block.png"));
     game.setBg("bg.png");
   }
   
@@ -37,7 +39,7 @@ public:
     sf::Music * music = game.resHandler.get<game::music>("The7seas.ogg");
     music->setVolume(10);
     music->play();
- 
+    
     WinEventHandler eventHandler(win);
     
     while (win->win->isOpen()) {

@@ -4,9 +4,9 @@
     <option name="separateTabsFileTypes" value="java;xml;css;html;js;properties;jsp;txt;php;php4;php5;phtml;inc;py;vue;kt;cpp;h;" />
     <option name="excludedDirectories">
       <list>
-        <option value="$PROJECT_DIR$/bin" />
-        <option value="$PROJECT_DIR$/cmake-build-debug" />
         <option value="$PROJECT_DIR$/docs" />
+        <option value="$PROJECT_DIR$/build" />
+        <option value="$PROJECT_DIR$/out" />
         <option value="$PROJECT_DIR$/resources" />
       </list>
     </option>

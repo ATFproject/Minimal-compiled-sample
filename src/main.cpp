@@ -4,8 +4,6 @@
 
 #include "winRenderThread.h"
 
-#include <box2d/box2d.h>
-
 // From https://dvsemenov.ru/c-box2d-v-dvux-slovax/
 void testBox2D() {
   b2World world(b2Vec2(0.0f, -10.0f));

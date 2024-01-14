@@ -19,7 +19,9 @@ namespace game {
     explicit Block( const sf::Vector2f & pos, const sf::Texture & Tex ) : GameObject(GameObjectType::BLOCK) {
       sprite.setTexture(Tex);
       sprite.setPosition(pos);
+      sprite.setScale(2, 2);
     }
   };
 }
+
 #endif //SFML_TANK_BATTLEROYALE_BLOCK_H

@@ -7,7 +7,7 @@
 
 #include "game objects/block.h"
 #include "game objects/tank.h"
-#include "game objects/game.h"
+#include "game/game.h"
 
 #include "window.h"
 

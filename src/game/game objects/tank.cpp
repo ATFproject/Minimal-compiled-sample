@@ -8,7 +8,7 @@
 
 void game::Tank::tick( window * window, game::Game & game ) {
   for (auto & gameObject: game.gameObjects) {
-    if (gameObject != this) {
+    if (gameObject.get() != this) {
       if (gameObject->type == GameObjectType::BLOCK
           && gameObject->sprite.getGlobalBounds().intersects(sprite.getGlobalBounds())) {
         pos = {300, 200};
@@ -30,13 +30,13 @@ void game::Tank::tick( window * window, game::Game & game ) {
     pos += bodyDir * speed * game.deltaTime();
   if (game.isKeyPressed(S))
     pos -= bodyDir * speed * game.deltaTime();
-
+  
   sprite.setPosition(pos);
   sprite.setRotation(bodyDirRad / M_PI * 180 + 90);
+  game.mainView.setCenter(pos);
 }
 
-game::Tank::Tank( const sf::Texture & Tex, const sf::Color & Col ) : GameObject(
-        GameObjectType::TANK) {
+game::Tank::Tank( const sf::Texture & Tex, const sf::Color & Col ) : GameObject(GameObjectType::TANK) {
   sprite.setTexture(Tex);
   sprite.setColor(Col);
   
@@ -52,6 +52,7 @@ game::Tank::Tank( const sf::Texture & Tex, const sf::Color & Col ) : GameObject(
   sprite.setPosition(pos);
   sprite.setScale(2, 2);
 }
+
 
 
 #pragma clang diagnostic pop

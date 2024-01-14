@@ -9,6 +9,7 @@
 #include "game_def.h"
 
 #include "timer.h"
+#include "gameSettings.h"
 
 namespace game {
   class Game {
@@ -17,21 +18,23 @@ namespace game {
     sf::Sprite bg;
     sf::Font fpsFont;
     sf::Text fps;
+    b2World world;
   
   public:
     game::Timer timer;
     sf::View mainView;
-    std::vector<GameObject *> gameObjects;
+    std::vector<std::shared_ptr<GameObject>> gameObjects;
     resourceHandler resHandler;
+    gameSettings settings;
     
     Game() = delete;
     
-    explicit Game( window * NewWin );
+    explicit Game( window * NewWin, gameSettings gameSettings );
     
     virtual ~Game();
     
     template<typename T>
-      T & getRes( const std::string &FileName ) {
+      T & getRes( const std::string & FileName ) {
         return resHandler.get<T>(FileName);
       }
     
@@ -48,6 +51,7 @@ namespace game {
     void draw();
     
     float time() const;
+    
     float deltaTime() const;
   };
 }

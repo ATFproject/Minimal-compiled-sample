@@ -20,12 +20,20 @@ namespace game {
   public:
     GameObjectType type;
     sf::Sprite sprite;
+    sf::RectangleShape hitbox;
     
     GameObject() = delete;
     
     virtual void tick( window * window, Game & game ) {};
     
     virtual void draw( window * window, Game & game ) {
+      hitbox.setOutlineColor(sf::Color::Red);
+      hitbox.setOutlineThickness(1);
+      hitbox.setFillColor(sf::Color::Transparent);
+      hitbox.setPosition(sprite.getGlobalBounds().getPosition());
+      hitbox.setSize(sprite.getGlobalBounds().getSize());
+      window->win->draw(hitbox);
+      
       window->win->draw(sprite);
     };
     

@@ -26,14 +26,16 @@ void game::Game::tick() {
 
 void game::Game::draw() {
   float rotation = mainView.getRotation();
-  
+  sf::Vector2f center = mainView.getCenter();
   mainView.setRotation(0);
+  mainView.setCenter(sf::Vector2f(0, 0) + mainView.getSize() / 2.f);
   win->win->setView(mainView);
   win->win->clear(sf::Color::Black);
   win->win->draw(bg);
   win->win->draw(fps);
   
   mainView.setRotation(rotation);
+  mainView.setCenter(center);
   win->win->setView(mainView);
   
   for (auto & gameObject: gameObjects) {
@@ -41,23 +43,16 @@ void game::Game::draw() {
   }
 }
 
-game::Game::~Game() {
-  for (auto & gameObject: gameObjects) {
-    delete gameObject;
-  }
-}
+game::Game::~Game() = default;
 
 game::Game & game::Game::operator<<( GameObject * toAdd ) {
-  gameObjects.push_back(toAdd);
+  gameObjects.push_back(std::shared_ptr<GameObject>(toAdd));
   return *this;
 }
 
-game::Game::Game( window * newWindow ) : win(newWindow) {
-  // TODO: Manage font as a resource
-  if (!fpsFont.loadFromFile("../resources/fonts/arialmt.ttf")) {
-    std::cerr << "FAILED TO LOAD ARIAL FONT!" << std::endl;
-    exit(50);
-  }
+game::Game::Game( window * newWindow, gameSettings gameSettings ) :
+        win(newWindow), world(b2Vec2_zero), settings(gameSettings) {
+  fpsFont = getRes<font>("arialmt.ttf");
   fps.setFont(fpsFont);
   fps.setCharacterSize(12);
   fps.setFillColor(sf::Color::Blue);
