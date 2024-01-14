@@ -39,7 +39,7 @@ void testBox2D() {
 int main() {
   testBox2D();
   
-  sf::ContextSettings winContextSettings(0, 0, 4); // set antialiasing level to 4
+  sf::ContextSettings winContextSettings(0, 0, 16); // set antialiasing level to 4
   sf::RenderWindow win(sf::VideoMode(800, 600), "Livefish-Example tanks game!", sf::Style::Default, winContextSettings);
   win.setVerticalSyncEnabled(true);
   win.setActive(true);

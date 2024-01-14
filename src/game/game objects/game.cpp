@@ -74,5 +74,14 @@ void game::Game::resize( float newW, float newH ) {
 }
 
 
+float game::Game::time() const {
+  return timer.time.asSeconds();
+}
+
+float game::Game::deltaTime() const {
+  return timer.deltaTime.asSeconds();
+}
+
+
 
 

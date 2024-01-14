@@ -1,3 +1,5 @@
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "cppcoreguidelines-narrowing-conversions"
 //
 // Created by livefish on 1/9/24.
 //
@@ -18,66 +20,38 @@ void game::Tank::tick( window * window, game::Game & game ) {
   enum sf::Keyboard::Scancode;
   
   if (game.isKeyPressed(A))
-    bodyDirRad -= 1 * game.timer.deltaTime.asSeconds();
+    bodyDirRad -= rotationSpeed * game.deltaTime();
   if (game.isKeyPressed(D))
-    bodyDirRad += 1 * game.timer.deltaTime.asSeconds();
+    bodyDirRad += rotationSpeed * game.deltaTime();
   
   bodyDir = norm(sf::Vector2f(std::cos(bodyDirRad), std::sin(bodyDirRad)));
   
   if (game.isKeyPressed(W))
-    pos += bodyDir * 75.f * game.timer.deltaTime.asSeconds();
+    pos += bodyDir * speed * game.deltaTime();
   if (game.isKeyPressed(S))
-    pos -= bodyDir * 75.f * game.timer.deltaTime.asSeconds();
-  
-  if (game.isKeyPressed(R))
-    sprite.setScale(sprite.getScale() + sf::Vector2f(0.1, 0.1));
-  if (game.isKeyPressed(F))
-    sprite.setScale(sprite.getScale() - sf::Vector2f(0.1, 0.1));
-  
-  if (game.isKeyPressed(Right)) {
-    game.mainView.rotate(-20 * game.timer.deltaTime.asSeconds());
-  }
-  
-  if (game.isKeyPressed(Left)) {
-    game.mainView.rotate(20 * game.timer.deltaTime.asSeconds());
-  }
-  
-  sf::Color color = sprite.getColor();
-  if (game.isKeyPressed(Z)) {
-    if (color.r == 255)
-      color.r = 0;
-    else
-      color.r += 1;
-  }
-  if (game.isKeyPressed(X)) {
-    if (color.g == 255)
-      color.g = 0;
-    else
-      color.g += 1;
-  }
-  if (game.isKeyPressed(C)) {
-    if (color.b == 255)
-      color.b = 0;
-    else
-      color.b += 1;
-  }
-  sprite.setColor(color);
-  
+    pos -= bodyDir * speed * game.deltaTime();
+
   sprite.setPosition(pos);
   sprite.setRotation(bodyDirRad / M_PI * 180 + 90);
 }
 
-game::Tank::Tank( const sf::Texture & Tex) : GameObject(GameObjectType::TANK) {
+game::Tank::Tank( const sf::Texture & Tex, const sf::Color & Col ) : GameObject(
+        GameObjectType::TANK) {
   sprite.setTexture(Tex);
-  sprite.setColor(sf::Color::Black);
+  sprite.setColor(Col);
   
   pos = {300, 200};
   bodyDir = gunDir = {0, -1};
   bodyDirRad = 0;
   gunDirRad = 0;
   
+  speed = 75;
+  rotationSpeed = 1;
+  
   sprite.setOrigin(sprite.getGlobalBounds().width / 2, sprite.getGlobalBounds().height / 2);
   sprite.setPosition(pos);
+  sprite.setScale(2, 2);
 }
 
 
+#pragma clang diagnostic pop

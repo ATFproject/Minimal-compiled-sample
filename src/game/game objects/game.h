@@ -46,6 +46,9 @@ namespace game {
     void tick();
     
     void draw();
+    
+    float time() const;
+    float deltaTime() const;
   };
 }
 
