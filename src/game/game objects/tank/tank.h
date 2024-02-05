@@ -12,17 +12,19 @@
 namespace game {
   class Tank : public gameObject {
   private:
-    float bodyDirRad, gunDirRad;
-    float rotationSpeed;
-    float speed;
+    b2PolygonShape shape;
+    const sf::Texture & tex;
+    sf::Vector2f size;
+    b2Vec2 maxVel;
+    float friction;
+    sf::Color col;
   public:
-    sf::Vector2f pos;
-    sf::Vector2f bodyDir;
-    sf::Vector2f gunDir;
-    
     Tank() = delete;
     
-    explicit Tank( const sf::Texture & Tex, const sf::Color & Col = sf::Color::White );
+    Tank(
+            const sf::Vector2f & pos, const sf::Vector2f & size, const sf::Texture & Tex,
+            const sf::Color & Col = sf::Color::White
+    );
     
     void tick( window * window, Game & game ) override;
     

@@ -15,7 +15,12 @@ namespace game {
   
   class gameObject {
   protected:
-    explicit gameObject( gameObjectType newType ) : type(newType), body(nullptr) {}
+    explicit gameObject( gameObjectType newType, const sf::Vector2f &pos ) : type(newType), body(nullptr) {
+      bodyDef.position.Set(pos.x, pos.y);
+      bodyDef.angle = 0.f;
+      bodyDef.allowSleep = true;
+      bodyDef.fixedRotation = false;
+    }
   
   public:
     gameObjectType type;

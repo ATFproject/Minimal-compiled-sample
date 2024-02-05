@@ -24,6 +24,10 @@ namespace game {
       return sf::Vector2<T>{toNorm.x / len, toNorm.y / len};
     }
   
+  inline void printVec( const b2Vec2 & vec ) {
+    std::cout << "(" << vec.x << ", " << vec.y << ")" << std::endl;
+  }
+  
   class Timer;
   
   class asset;

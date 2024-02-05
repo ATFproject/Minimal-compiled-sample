@@ -21,11 +21,7 @@ namespace game {
   
   public:
     explicit Block( const sf::Vector2f & pos, const sf::Vector2f & size, sf::Texture & Tex ) :
-            gameObject(gameObjectType::BLOCK), tex(Tex), size(size) {
-      bodyDef.position.Set(pos.x, pos.y);
-      bodyDef.angle = 0.f;
-      bodyDef.allowSleep = true;
-      bodyDef.fixedRotation = false;
+            gameObject(gameObjectType::BLOCK, pos), tex(Tex), size(size) {
       bodyDef.type = b2_dynamicBody; /* No moving on collisions, can move itself */
       shape.SetAsBox(size.x / 2, size.y / 2);
       maxVel = 50;
@@ -50,7 +46,6 @@ namespace game {
     }
     
     void tick( window * window, Game & game ) override {
-      static int angle = 0;
       gameObject::tick(window, game);
       
       if (game.isKeyPressed(sf::Keyboard::Scancode::Up))
