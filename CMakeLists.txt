@@ -1,3 +1,5 @@
+# Test edit
+
 # Set up cmake and c++ settings
 cmake_minimum_required(VERSION 3.8)
 project(sfml_tank_battleroyale LANGUAGES CXX)
