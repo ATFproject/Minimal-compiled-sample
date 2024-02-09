@@ -10,26 +10,26 @@
 #include "game objects/game object/gameObject.h"
 
 namespace game {
-  class Tank : public gameObject {
-  private:
-    b2PolygonShape shape;
-    const sf::Texture & tex;
-    sf::Vector2f size;
-    b2Vec2 maxVel;
-    float friction;
-    sf::Color col;
-  public:
-    Tank() = delete;
-    
-    Tank(
-            const sf::Vector2f & pos, const sf::Vector2f & size, const sf::Texture & Tex,
-            const sf::Color & Col = sf::Color::White
-    );
-    
-    void tick( window * window, Game & game ) override;
-    
-    virtual void addToWorld( b2World & world ) override;
-  };
+    class Tank : public gameObject {
+    private:
+        b2PolygonShape shape;
+        const sf::Texture & tex;
+        sf::Vector2f size;
+        b2Vec2 maxVel;
+        float friction;
+        sf::Color col;
+    public:
+        Tank() = delete;
+
+        Tank(
+                const sf::Vector2f & pos, const sf::Vector2f & size, const sf::Texture & Tex,
+                const sf::Color & Col = sf::Color::White
+            );
+
+        void tick(window * window, Game & game) override;
+
+        virtual void addToWorld(b2World & world) override;
+    };
 }
 
 

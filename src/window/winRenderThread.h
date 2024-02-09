@@ -14,43 +14,44 @@
 
 class WinRenderThread {
 private:
-  window * win;
-  game::Game game;
-  
-  void drawFrame() {
-    game.tick();
-    game.draw();
-  }
+    window * win;
+    game::Game game;
+
+    void drawFrame() {
+        game.tick();
+        game.draw();
+    }
 
 public:
-  WinRenderThread() = delete;
-  
-  WinRenderThread( window * newWindow, game::gameSettings settings ) : win(newWindow), game(newWindow, settings) {
-    /*game << new game::Block(sf::Vector2f(100, 50), game.getRes<game::texture>("block.png"))
-         << new game::Block(sf::Vector2f(100, 150), game.getRes<game::texture>("block.png"))
-         << new game::Tank(game.getRes<game::texture>("tanks/tank raw.png"));*/
-    
-    game << new game::Tank(
-            sf::Vector2f(250, 150), sf::Vector2f(64, 64),
-            game.getRes<game::texture>("tanks/tank raw.png"), sf::Color::Yellow);
-    sf::Texture * tex = game.getRes<game::texture>("block.png").data.get();
-    game << new game::Block(sf::Vector2f(100, 50), sf::Vector2f(64, 32), *tex);
-    game.setBg("bg.png");
-  }
-  
-  void startRendering() {
-    sf::Music * music = game.resHandler.get<game::music>("motion.mp3");
-    music->setVolume(10);
-    music->play();
-    
-    WinEventHandler eventHandler(win);
-    
-    while (win->win->isOpen()) {
-      eventHandler.handleNewEvents(game);
-      drawFrame();
-      win->win->display();
+    WinRenderThread() = delete;
+
+    WinRenderThread(window * newWindow, game::gameSettings settings) : win(newWindow), game(newWindow, settings) {
+        /*game << new game::Block(sf::Vector2f(100, 50), game.getRes<game::texture>("block.png"))
+             << new game::Block(sf::Vector2f(100, 150), game.getRes<game::texture>("block.png"))
+             << new game::Tank(game.getRes<game::texture>("tanks/tank raw.png"));*/
+
+        game << new game::Tank(
+                sf::Vector2f(250, 150), sf::Vector2f(64, 64),
+                game.getRes<game::texture>("tanks/tank raw.png"), sf::Color::Yellow);
+
+        sf::Texture * tex = game.getRes<game::texture>("block.png").data.get();
+        game << new game::Block(sf::Vector2f(100, 50), sf::Vector2f(64, 32), *tex);
+        game.setBg("bg.png");
     }
-  }
+
+    void startRendering() {
+        sf::Music * music = game.resHandler.get<game::music>("motion.mp3");
+        music->setVolume(10);
+        music->play();
+
+        WinEventHandler eventHandler(win);
+
+        while (win->win->isOpen()) {
+            eventHandler.handleNewEvents(game);
+            drawFrame();
+            win->win->display();
+        }
+    }
 };
 
 #endif //SFML_TANK_BATTLEROYALE_WINRENDERTHREAD_H

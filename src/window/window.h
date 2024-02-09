@@ -9,14 +9,14 @@
 
 class window {
 public:
-  sf::RenderWindow * win;
-  sf::Vector2i size;
-  bool isActive;
-  bool keys[256]{false};
-  
-  window() = delete;
-  
-  explicit window( sf::RenderWindow * window ) : win(window), isActive(true) {};
+    sf::RenderWindow * win;
+    sf::Vector2i size;
+    bool isActive;
+    bool keys[256] {false};
+
+    window() = delete;
+
+    explicit window(sf::RenderWindow * window) : win(window), isActive(true) {};
 };
 
 #endif //SFML_TANK_BATTLEROYALE_WINDOW_H

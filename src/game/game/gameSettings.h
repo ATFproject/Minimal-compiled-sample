@@ -8,9 +8,9 @@
 #include "game_def.h"
 
 namespace game {
-  struct gameSettings {
-    bool showHitboxes;
-  };
+    struct gameSettings {
+        bool showHitboxes;
+    };
 }
 
 #endif //SFML_TANK_BATTLEROYALE_GAMESETTINGS_H

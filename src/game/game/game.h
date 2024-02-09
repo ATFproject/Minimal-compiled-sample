@@ -12,49 +12,49 @@
 #include "gameSettings.h"
 
 namespace game {
-  class Game {
-  private:
-    window * win;
-    sf::Sprite bg;
-    sf::Font fpsFont;
-    sf::Text fps;
-    b2World world;
-  
-  public:
-    game::Timer timer;
-    sf::View mainView;
+    class Game {
+    private:
+        window * win;
+        sf::Sprite bg;
+        sf::Font fpsFont;
+        sf::Text fps;
+        b2World world;
 
-    std::vector<std::shared_ptr<gameObject>> gameObjects;
-    resourceHandler resHandler;
-    gameSettings settings;
-    
-    Game() = delete;
-    
-    explicit Game( window * NewWin, gameSettings gameSettings );
-    
-    virtual ~Game();
-    
-    template<typename T>
-      T & getRes( const std::string & FileName ) {
-        return resHandler.get<T>(FileName);
-      }
-    
-    void setBg( const std::string & BgFileName );
-    
-    void resize( float newW, float newH );
-    
-    bool isKeyPressed( sf::Keyboard::Scancode key );
-    
-    Game & operator<<( gameObject * toAdd );
-    
-    void tick();
-    
-    void draw();
-    
-    float time() const;
-    
-    float deltaTime() const;
-  };
+    public:
+        game::Timer timer;
+        sf::View mainView;
+
+        std::vector<std::shared_ptr<gameObject>> gameObjects;
+        resourceHandler resHandler;
+        gameSettings settings;
+
+        Game() = delete;
+
+        Game(window * NewWin, gameSettings gameSettings);
+
+        virtual ~Game();
+
+        template<typename T>
+            T & getRes(const std::string & FileName) {
+                return resHandler.get<T>(FileName);
+            }
+
+        void setBg(const std::string & BgFileName);
+
+        void resize(float newW, float newH);
+
+        bool isKeyPressed(sf::Keyboard::Scancode key);
+
+        Game & operator<<(gameObject * toAdd);
+
+        void tick();
+
+        void draw();
+
+        float time() const;
+
+        float deltaTime() const;
+    };
 }
 
 #endif //SFML_TANK_BATTLEROYALE_GAME_H

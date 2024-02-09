@@ -11,14 +11,14 @@
 
 class WinEventHandler {
 private:
-  window * win;
+    window * win;
 
 public:
-  WinEventHandler() = delete;
-  
-  explicit WinEventHandler( window * newWindow ) : win(newWindow) {}
-  
-  void handleNewEvents( game::Game & game ) const;
+    WinEventHandler() = delete;
+
+    explicit WinEventHandler(window * newWindow) : win(newWindow) {}
+
+    void handleNewEvents(game::Game & game) const;
 };
 
 
