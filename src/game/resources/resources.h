@@ -16,7 +16,11 @@ namespace game {
     
     template<typename T>
       static std::shared_ptr<T> load( const std::string & FileName ){
+#ifdef WIN32
+        std::string path = "../../../../resources/" + FileName;
+#else
         std::string path = "../resources/" + FileName;
+#endif /* WIN32 */
         auto data = std::make_shared<T>();
         bool res;
         if constexpr (requires { data->loadFromFile(path); }) {
